@@ -1,6 +1,21 @@
 from django.shortcuts import render, redirect
 from random import choice
 
+# from rembg import remove
+
+# # Specify the input and output file paths
+# input_image_path = 'game_app\static\images\snake.png'
+# output_image_path = 'game_app\static\images\output_snake_img.png'
+
+# # Perform the background removal
+# with open(input_image_path, "rb") as input_file:
+#     output_data = remove(input_file.read())
+
+# with open(output_image_path, "wb") as output_file:
+#     output_file.write(output_data)
+
+
+
 def game_view(request):
     if request.method == 'POST':
         user_choice = request.POST.get('user_choice')

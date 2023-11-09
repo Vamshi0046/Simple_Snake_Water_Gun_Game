@@ -6,157 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Snake Water Gun Game</title>
-    <link rel="stylesheet" href="{% static 'styles.css' %}">
-    <style>
-        /* Reset some default styles */
-        body,
-        h1,
-        h2,
-        p {
-            margin: 0;
-            padding: 0;
-        }
-
-        /* 
-        body {
-            font-family: 'Montserrat', Arial, sans-serif;
-            background-color: #f0f0f0;
-        } */
-
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 40px;
-            background-color: #fff;
-            border-radius: 20px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-            text-align: center;
-
-        }
-
-        .title {
-            font-size: 2.5rem;
-            color: #007bff;
-            margin-bottom: 20px;
-        }
-
-        .image-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-
-        .image-container img {
-            margin: 0 15px;
-            max-height: 120px;
-            transition: transform 0.3s ease-in-out;
-        }
-
-        .image-container img:hover {
-            transform: scale(1.1);
-        }
-
-        select,
-        .btn {
-            display: block;
-            margin: 0 auto 15px;
-            padding: 10px;
-            width: 100%;
-            border: 2px solid #007bff;
-            border-radius: 5px;
-            font-family: 'Montserrat', Arial, sans-serif;
-            font-size: 1rem;
-            color: #007bff;
-            background-color: transparent;
-            cursor: pointer;
-        }
-
-        .btn:hover {
-            background-color: #007bff;
-            color: #fff;
-        }
-
-        .result {
-            margin-top: 30px;
-            font-size: 1.3rem;
-            font-weight: bold;
-            opacity: 0;
-            transform: translateY(-20px);
-            animation: result-slide-in 0.8s ease-in-out 0.5s forwards;
-        }
-
-        @keyframes result-slide-in {
-            0% {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .computer-choice {
-            color: #007bff;
-        }
-
-        .score {
-            margin-top: 40px;
-            font-size: 1.5rem;
-            display: flex;
-            justify-content: space-between;
-        }
-
-        body {
-            background-image: url('{% static "images/bg4.png" %}');
-            background-size: cover;
-            background-repeat: no-repeat;
-
-
-        }
-
-        .birthday-blast {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            
-
-        }
-
-        /* nav {
-            background-color: #f2f2f2;
-            padding: 10px;
-        }
-
-        nav ul {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-        }
-
-        nav ul li {
-            display: inline;
-        }
-
-        nav ul li a {
-            text-decoration: none;
-            padding: 10px;
-            color: #333;
-        }
-
-        nav ul li a:hover {
-            background-color: #333;
-            color: #fff;
-        } */
-    </style>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
 </head>
 
 <body>
@@ -173,11 +23,11 @@
 
         <h1 class="title">Snake Water Gun Game</h1>
         <div class="image-container">
-            <img src="{% static 'images/snake.png' %}" alt="Snake">
-            <img src="{% static 'images/water.png' %}" alt="Water">
-            <img src="{% static 'images/gun.png' %}" alt="Gun" class="">
+            <img src="{% static 'images/output_snake_img.png' %}" alt="Snake" style="width: 10rem; height: 10rem;">
+            <img src="{% static 'images/output_water_img.png' %}" alt="Water" style="width: 10rem; height: 10rem;">
+            <img src="{% static 'images/output_img.png' %}" alt="Gun"  style="width: 10rem; height: 10rem;">
         </div>
-        <form method="post" action="">
+        <form method="post" action="#">
             {% csrf_token %}
             <select name="user_choice" id="user_choice">
                 <option value="snake">Snake</option>
@@ -188,30 +38,17 @@
         </form>
         {% if result %}
         <div class="result result-animation">
-            <h2>Result:</h2>
-            <p>User choice: {{ user_choice }}</p>
-            <p>Computer choice: <span class="computer-choice">{{ computer_choice }}</span></p>
-            <p style="color: red; display: inline;"> ~ {{ result }} ~</p>
+            <!-- <h2></h2> -->
+            <p>User choice: <span class="computer-choice">{{ user_choice }} </span>   |  Computer choice: <span class="computer-choice">{{ computer_choice }}</span></p>
+            <p style="color: red; display: inline; "> ~ {{ result }} ~</p>
         </div>
         {% endif %}
-        <!-- <div class="score">
-            <p>Wins: {{ wins }}</p>
-            <p>Losses: {{ losses }}</p>
-            <p>Draws: {{ draws }}</p>
+
+        <!-- <div id="birthday-blast" class="birthday-blast">
+            <h1 style="font-size: 200px;color: red; margin-top: 300px;">You Won</h1>
         </div> -->
 
-        <div id="birthday-blast" class="birthday-blast">
-            <!-- Add your birthday blast animation content here -->
-            <!-- This could be images, videos, or other celebratory elements -->
-            <!-- <img src="{% static 'images/won.gif' %}" alt="Snake" style="margin-top: 200px;"> -->
-            <!-- Add this section to display history -->
-            <h1 style="font-size: 200px;color: red; margin-top: 300px;">You Won</h1>
-
-
-        </div>
-
     </div>
-
     <audio id="win-sound" src="{% static 'sounds/win.mp3' %}"></audio>
     <audio id="lose-sound" src="{% static 'sounds/lose.mp3' %}"></audio>
     <audio id="draw-sound" src="{% static 'sounds/draw.mp3' %}"></audio>
@@ -220,7 +57,9 @@
         <p>Losses: {{ losses }}</p>
         <p style="margin-right: 30px;">Draws: {{ draws }}</p>
     </div>
-
+   <footer class="footer">
+    <p>&copy; 2023 Vamshi>>Django_Games</p>
+   </footer>
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
