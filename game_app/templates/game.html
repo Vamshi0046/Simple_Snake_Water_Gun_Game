@@ -27,7 +27,7 @@
             <img src="{% static 'images/output_water_img.png' %}" alt="Water" style="width: 10rem; height: 10rem;">
             <img src="{% static 'images/output_img.png' %}" alt="Gun"  style="width: 10rem; height: 10rem;">
         </div>
-        <form method="post" action="#">
+        <form method="post" action="">
             {% csrf_token %}
             <select name="user_choice" id="user_choice">
                 <option value="snake">Snake</option>
